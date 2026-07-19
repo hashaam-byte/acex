@@ -1,58 +1,38 @@
-import {
-  LineChart,
-  CandlestickChart,
-  ShieldCheck,
-  Brain,
-  Coins,
-  Waypoints,
-} from "lucide-react";
+import Image from "next/image";
 import { FeatureStrip } from "./FeatureStrip";
 
 const CARDS = [
   {
-    icon: LineChart,
+    icon: "/icons/forex.png",
     title: "Forex Trading",
     description: "Learn to trade the world's largest financial market with confidence.",
-    tone: "blue",
   },
   {
-    icon: CandlestickChart,
+    icon: "/icons/candlestick.png",
     title: "Technical Analysis",
     description: "Master chart patterns, indicators, and market trends.",
-    tone: "cyan",
   },
   {
-    icon: ShieldCheck,
+    icon: "/icons/shield.png",
     title: "Risk Management",
     description: "Protect your capital and manage risk like a professional.",
-    tone: "blue",
   },
   {
-    icon: Brain,
+    icon: "/icons/brain.png",
     title: "Trading Psychology",
     description: "Develop the mindset and discipline of successful traders.",
-    tone: "violet",
   },
   {
-    icon: Coins,
+    icon: "/icons/crypto.png",
     title: "Crypto Trading",
     description: "Understand crypto markets and trade digital assets strategically.",
-    tone: "amber",
   },
   {
-    icon: Waypoints,
+    icon: "/icons/price-action.png",
     title: "Price Action",
     description: "Learn to read the market and make high-probability decisions.",
-    tone: "cyan",
   },
-] as const;
-
-const TONE_CLASSES: Record<string, string> = {
-  blue: "border-brand-blue/30 bg-brand-blue/10 text-brand-blue shadow-[0_0_24px_rgba(37,99,235,0.25)]",
-  cyan: "border-brand-cyan/30 bg-brand-cyan/10 text-brand-cyan shadow-[0_0_24px_rgba(34,211,238,0.25)]",
-  violet: "border-indigo-400/30 bg-indigo-400/10 text-indigo-400 shadow-[0_0_24px_rgba(129,140,248,0.25)]",
-  amber: "border-amber-400/30 bg-amber-400/10 text-amber-400 shadow-[0_0_24px_rgba(251,191,36,0.25)]",
-};
+];
 
 export function LearningCards() {
   return (
@@ -67,18 +47,20 @@ export function LearningCards() {
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {CARDS.map(({ icon: Icon, title, description, tone }) => (
+        {CARDS.map(({ icon, title, description }) => (
           <div
             key={title}
-            className="group rounded-2xl border border-border bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]"
           >
             <div
-              className={`flex h-12 w-12 items-center justify-center rounded-full border ${TONE_CLASSES[tone]}`}
-            >
-              <Icon className="h-5 w-5" strokeWidth={1.75} />
+              aria-hidden
+              className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-brand-blue/10 blur-[50px] transition-opacity group-hover:opacity-80"
+            />
+            <div className="relative flex h-14 w-14 items-center justify-center">
+              <Image src={icon} alt="" width={64} height={64} className="h-full w-full object-contain" />
             </div>
-            <h3 className="mt-5 font-heading text-base font-semibold text-text">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-text-muted">{description}</p>
+            <h3 className="relative mt-4 font-heading text-base font-semibold text-text">{title}</h3>
+            <p className="relative mt-2 text-sm leading-relaxed text-text-muted">{description}</p>
           </div>
         ))}
       </div>

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, PlayCircle, BadgeCheck } from "lucide-react";
-import { TradingDeviceMockup } from "./TradingDeviceMockup";
 import { FloatingChip } from "./FloatingChip";
 import { TrustAvatars } from "./TrustAvatars";
 import { MarketTicker } from "./MarketTicker";
@@ -63,9 +62,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Device mockup column */}
+        {/* Composite visual column */}
         <div className="relative z-10">
-          {/* Globe: sits behind the mockup, dimmed and blended into the dark background */}
+          {/* Globe: sits behind the composite, dimmed and blended into the dark background */}
           <Image
             src="/hero/globe.png"
             alt=""
@@ -73,16 +72,20 @@ export function Hero() {
             width={640}
             height={640}
             priority
-            className="pointer-events-none absolute -top-24 left-1/2 -z-10 w-[440px] max-w-none -translate-x-1/2 opacity-0 mix-blend-screen dark:opacity-60 sm:w-[520px] lg:-top-32 lg:w-[560px]"
+            className="pointer-events-none absolute -top-16 left-1/2 -z-10 w-[380px] max-w-none -translate-x-1/2 opacity-0 mix-blend-screen dark:opacity-40 sm:w-[440px] lg:w-[480px]"
           />
 
-          <FloatingChip symbol="EUR/USD" change="+0.32%" up className="-left-4 -top-6 lg:-left-8" />
-          <FloatingChip symbol="BTC/USD" change="+1.35%" up className="-right-2 -top-10 lg:-right-6" />
-          <FloatingChip symbol="GBP/USD" change="-0.15%" up={false} className="-left-6 bottom-16 lg:-left-10" />
+          <FloatingChip symbol="EUR/USD" change="+0.32%" up className="left-0 top-2 lg:-left-4" />
+          <FloatingChip symbol="GBP/USD" change="-0.15%" up={false} className="right-0 bottom-6 lg:-right-4" />
 
-          <div className="pt-8">
-            <TradingDeviceMockup />
-          </div>
+          <Image
+            src="/hero/device-composite.png"
+            alt="AceX trading dashboard shown on a laptop and phone, with Bitcoin and Ethereum coins"
+            width={1400}
+            height={933}
+            priority
+            className="relative mx-auto w-full max-w-[620px]"
+          />
         </div>
       </div>
 
