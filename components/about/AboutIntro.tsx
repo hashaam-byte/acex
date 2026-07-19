@@ -55,9 +55,9 @@ export function AboutIntro() {
 
           <blockquote className="mt-9 max-w-md rounded-2xl border border-border bg-surface p-6">
             <p className="font-heading text-lg font-medium leading-snug text-text">
-              &ldquo;Discipline beats emotion.
+              &ldquo;Trading is not about predicting the future
               <br />
-              Consistency beats luck.&rdquo;
+             It is about using the past to understand the present.&rdquo;
             </p>
             <footer className="mt-3 text-xs text-text-faint">— AceX</footer>
           </blockquote>

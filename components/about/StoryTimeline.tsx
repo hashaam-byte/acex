@@ -1,15 +1,37 @@
+import { ChevronRight, ChevronDown } from "lucide-react";
+
 const TIMELINE = [
-  { year: "2022", text: "Started with crypto airdrops." },
-  { year: "2023", text: "Began futures and perpetual trading." },
-  { year: "2024", text: "Transitioned into professional crypto trading." },
-  { year: "2025", text: "Developed a personal trading strategy." },
-  { year: "2026", text: "Founded AceX Trading Academy." },
+  {
+    year: "2022",
+    title: "The Beginning",
+    text: "Stepped into the world of cryptocurrency through airdrops, testnets, and blockchain reward programs, building a strong foundation in the crypto ecosystem and learning how decentralized technologies work.",
+  },
+  {
+    year: "2023",
+    title: "Entering the Market",
+    text: "Began actively trading the crypto futures and perpetual markets, studying market structure, technical analysis, and risk management while gaining real trading experience.",
+  },
+  {
+    year: "2024",
+    title: "Reinvention",
+    text: "Made the decision to fully transition from airdrops into professional crypto trading, focusing entirely on developing consistency, discipline, and long-term profitability.",
+  }, 
+  {
+    year: "2025",
+    title: "Building My Edge",
+    text: "Refined my trading philosophy, revised my overall trading approach, and developed my own trading strategy based on market structure, price action, and disciplined risk management.",
+  },
+  {
+    year: "2026",
+    title: "Birth of AceX",
+    text: "Founded AceX Trading Academy with a mission to educate, mentor, and build a thriving community where traders can learn, grow, and achieve financial freedom together.",
+  },
 ];
 
 export function StoryTimeline() {
   return (
     <section className="border-t border-border bg-surface/30">
-      <div className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="text-center">
           <h2 className="font-heading text-3xl font-semibold tracking-tight text-text sm:text-4xl">
             My <span className="text-brand-blue">Story</span>
@@ -19,22 +41,31 @@ export function StoryTimeline() {
           </p>
         </div>
 
-        <ol className="relative mt-14 flex flex-col gap-10 pl-8 sm:pl-10">
-          <div
-            aria-hidden
-            className="absolute bottom-2 left-[7px] top-2 w-px bg-gradient-to-b from-brand-blue via-brand-cyan to-transparent sm:left-[9px]"
-          />
-          {TIMELINE.map((step) => (
-            <li key={step.year} className="relative">
-              <span
-                aria-hidden
-                className="absolute -left-8 top-0.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-bg bg-brand-blue shadow-[0_0_0_4px_rgba(37,99,235,0.15)] sm:-left-10"
-              />
-              <p className="font-numeric text-sm font-semibold text-brand-cyan">{step.year}</p>
-              <p className="mt-1 text-[15px] leading-relaxed text-text">{step.text}</p>
-            </li>
+        <div className="mt-14 flex flex-col items-stretch lg:flex-row lg:items-center">
+          {TIMELINE.map((step, i) => (
+            <div key={step.year} className="flex flex-col items-center lg:flex-1 lg:flex-row">
+              <div className="w-full rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border-strong">
+                <span className="inline-flex items-center rounded-full border border-brand-blue/30 bg-brand-blue/10 px-2.5 py-1 font-numeric text-xs font-semibold text-brand-blue">
+                  {step.year}
+                </span>
+                <h3 className="mt-3 font-heading text-[15px] font-semibold text-text">
+                  {step.title}
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-text-muted">{step.text}</p>
+              </div>
+
+              {i < TIMELINE.length - 1 && (
+                <div className="flex items-center justify-center py-2 lg:px-2 lg:py-0">
+                  <ChevronDown className="h-4 w-4 shrink-0 text-brand-cyan lg:hidden" strokeWidth={2} />
+                  <ChevronRight
+                    className="hidden h-4 w-4 shrink-0 text-brand-cyan lg:block"
+                    strokeWidth={2}
+                  />
+                </div>
+              )}
+            </div>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
   );
