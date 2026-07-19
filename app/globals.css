@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* AceX design tokens                                                  */
+/* Light mode = daylight desk: soft cool paper, ink text.              */
+/* Dark mode  = trading-floor: near-black, glowing blue/cyan.          */
+/* Green is reserved strictly for "gain" / success signals — never     */
+/* used as a general accent — per brief.                               */
+/* ------------------------------------------------------------------ */
+
+:root {
+  --font-heading: var(--font-space-grotesk);
+  --font-body: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+
+  /* Light mode */
+  --bg: #F6F8FC;
+  --bg-elevated: #FFFFFF;
+  --surface: #FFFFFF;
+  --surface-2: #EEF2F9;
+  --border: #E2E8F3;
+  --border-strong: #CBD5E8;
+  --text: #0B1023;
+  --text-muted: #57607A;
+  --text-faint: #8791AA;
+
+  --brand-blue: #2563EB;
+  --brand-blue-dim: #1D4ED8;
+  --brand-cyan: #22D3EE;
+  --brand-green: #10B981;
+  --brand-red: #F43F5E;
+
+  --gradient-hero: linear-gradient(135deg, #2563EB 0%, #22D3EE 100%);
+  --glow-blue: 0 0 40px rgba(37, 99, 235, 0.25);
+  --shadow-card: 0 1px 2px rgba(11, 16, 35, 0.04), 0 8px 24px rgba(11, 16, 35, 0.06);
+}
+
+.dark {
+  --bg: #050816;
+  --bg-elevated: #080C1F;
+  --surface: #0B1023;
+  --surface-2: #10152B;
+  --border: #1B2140;
+  --border-strong: #262D52;
+  --text: #F3F5FB;
+  --text-muted: #9AA3C0;
+  --text-faint: #656E90;
+
+  --brand-blue: #3B82F6;
+  --brand-blue-dim: #2563EB;
+  --brand-cyan: #22D3EE;
+  --brand-green: #10B981;
+  --brand-red: #FB7185;
+
+  --gradient-hero: linear-gradient(135deg, #2563EB 0%, #22D3EE 100%);
+  --glow-blue: 0 0 60px rgba(37, 99, 235, 0.35);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-text-faint: var(--text-faint);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-blue-dim: var(--brand-blue-dim);
+  --color-brand-cyan: var(--brand-cyan);
+  --color-brand-green: var(--brand-green);
+  --color-brand-red: var(--brand-red);
+
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-numeric {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--brand-blue);
+  color: white;
+}
+
+/* Ticker scroll animation */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker-scroll 32s linear infinite;
+}
+
+/* Candle grow-in */
+@keyframes candle-rise {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+.animate-candle {
+  transform-origin: bottom;
+  animation: candle-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Slow ambient pulse for glow orbs */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.08); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
