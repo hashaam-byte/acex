@@ -58,7 +58,7 @@ export function CourseGrid() {
         {COURSES.map(({ icon, title, lessons, level, highlight }) => (
           <div
             key={title}
-            className={`group flex flex-col rounded-2xl border p-6 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)] ${
+            className={`group transition-premium flex flex-col rounded-3xl border p-6 hover:-translate-y-1 hover:shadow-[var(--shadow-premium)] ${
               highlight
                 ? "border-amber-300/40 bg-gradient-to-b from-amber-300/[0.08] to-surface"
                 : "border-border bg-surface hover:border-border-strong"

@@ -23,7 +23,7 @@ export function CampusFeatures() {
         {FEATURES.map(({ icon: Icon, title, description }) => (
           <div
             key={title}
-            className="rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-border-strong"
+            className="transition-premium rounded-3xl border border-border bg-surface p-6 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-brand-blue/25 bg-brand-blue/10">
               <Icon className="h-5 w-5 text-brand-blue" strokeWidth={1.75} />

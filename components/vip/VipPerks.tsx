@@ -31,7 +31,7 @@ export function VipPerks() {
         {PERKS.map(({ icon: Icon, image, label }) => (
           <div
             key={label}
-            className="flex flex-col items-center gap-2.5 rounded-2xl border border-border bg-surface px-4 py-6 text-center transition-colors hover:border-amber-300/40"
+            className="transition-premium flex flex-col items-center gap-2.5 rounded-3xl border border-border bg-surface px-4 py-6 text-center hover:-translate-y-0.5 hover:border-amber-300/40 hover:shadow-[var(--shadow-card)]"
           >
             {image ? (
               <div className="flex h-10 w-10 items-center justify-center">

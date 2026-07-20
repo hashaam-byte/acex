@@ -20,7 +20,7 @@ export function Stats() {
           {STATS.map(({ icon: Icon, value, label, tone }) => (
             <div
               key={label}
-              className="flex flex-col items-center gap-2.5 rounded-2xl border border-border bg-surface px-4 py-7 text-center"
+              className="transition-premium flex flex-col items-center gap-2.5 rounded-3xl border border-border bg-surface px-4 py-7 text-center hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]"
             >
               <Icon className={`h-5 w-5 ${tone}`} strokeWidth={1.75} />
               <p className="font-numeric text-2xl font-semibold text-text">{value}</p>

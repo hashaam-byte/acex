@@ -14,15 +14,15 @@
   --font-mono: var(--font-jetbrains-mono);
 
   /* Light mode */
-  --bg: #F6F8FC;
+  --bg: #FBFBFD;
   --bg-elevated: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-2: #EEF2F9;
-  --border: #E2E8F3;
-  --border-strong: #CBD5E8;
-  --text: #0B1023;
-  --text-muted: #57607A;
-  --text-faint: #8791AA;
+  --surface-2: #F4F5F7;
+  --border: #E7E8EC;
+  --border-strong: #D9DBE1;
+  --text: #111214;
+  --text-muted: #5B5D66;
+  --text-faint: #8B8D96;
 
   --brand-blue: #2563EB;
   --brand-blue-dim: #1D4ED8;
@@ -31,8 +31,9 @@
   --brand-red: #F43F5E;
 
   --gradient-hero: linear-gradient(135deg, #2563EB 0%, #22D3EE 100%);
-  --glow-blue: 0 0 40px rgba(37, 99, 235, 0.25);
-  --shadow-card: 0 1px 2px rgba(11, 16, 35, 0.04), 0 8px 24px rgba(11, 16, 35, 0.06);
+  --glow-blue: 0 0 40px rgba(37, 99, 235, 0.2);
+  --shadow-card: 0 1px 2px rgba(17, 18, 20, 0.03), 0 12px 32px rgba(17, 18, 20, 0.05);
+  --shadow-premium: 0 2px 4px rgba(17, 18, 20, 0.04), 0 24px 60px rgba(17, 18, 20, 0.09);
 }
 
 .dark {
@@ -55,6 +56,7 @@
   --gradient-hero: linear-gradient(135deg, #2563EB 0%, #22D3EE 100%);
   --glow-blue: 0 0 60px rgba(37, 99, 235, 0.35);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 30px rgba(0, 0, 0, 0.45);
+  --shadow-premium: 0 4px 8px rgba(0, 0, 0, 0.35), 0 30px 70px rgba(0, 0, 0, 0.55);
 }
 
 @theme inline {
@@ -122,6 +124,12 @@ h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
+/* Shared premium easing for card hover/lift interactions */
+.transition-premium {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-duration: 400ms;
+}
+
 /* Ticker scroll animation */
 @keyframes ticker-scroll {
   from { transform: translateX(0); }
@@ -168,4 +176,84 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-twinkle {
   animation: twinkle 2.4s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------------ */
+/* Distinctive-surface utilities                                       */
+/* ------------------------------------------------------------------ */
+
+/* Fine film-grain texture — sits over dark sections for a less "flat
+   gradient" feel. Very low opacity, decorative only. */
+.bg-grain {
+  position: relative;
+}
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Dot-grid backdrop, used instead of the plain line-grid on a few sections
+   for variety. */
+.bg-dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Spotlight card: a soft radial highlight that follows the cursor.
+   Requires --x / --y to be set inline via JS (see SpotlightCard.tsx). */
+.spotlight-card {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    360px circle at var(--x, 50%) var(--y, 50%),
+    rgba(37, 99, 235, 0.14),
+    transparent 70%
+  );
+}
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Animated gradient border ring — a thin conic-gradient "seam" behind the
+   card that slowly rotates. Used sparingly on 1-2 hero-level cards. */
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+.gradient-border {
+  position: relative;
+  border-radius: inherit;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from 0deg, #2563EB, #22D3EE, transparent, #2563EB);
+  animation: border-spin 6s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.6;
+}
+
+/* Monospace eyebrow / terminal-style label */
+.label-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  letter-spacing: 0.02em;
 }

@@ -12,73 +12,68 @@ export function Navbar() {
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-border bg-bg/80 backdrop-blur-lg"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5 lg:px-8">
-        <Link href="/" className="flex items-center gap-2.5" onClick={() => setOpen(false)}>
+    <header className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-4 sm:pt-4">
+      <nav
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full border px-3 py-2 transition-all duration-300 sm:pl-4 sm:pr-2 ${
+          scrolled
+            ? "border-border bg-bg/75 shadow-[var(--shadow-card)] backdrop-blur-xl"
+            : "border-white/[0.06] bg-bg/40 backdrop-blur-md"
+        }`}
+      >
+        <Link href="/" className="flex shrink-0 items-center gap-2" onClick={() => setOpen(false)}>
           <Image
             src="/logo/acex-mark.png"
             alt="AceX Trading Academy"
-            width={34}
-            height={34}
-            className="h-8 w-8 shrink-0"
+            width={30}
+            height={30}
+            className="h-7 w-7 shrink-0"
             priority
           />
-          <span className="font-heading text-[15px] font-semibold leading-none tracking-tight text-text">
-            AceX
-            <span className="block text-[9px] font-medium uppercase tracking-[0.2em] text-text-faint">
-              Trading Academy
-            </span>
-          </span>
+          <span className="font-heading text-sm font-semibold tracking-tight text-text">AceX</span>
         </Link>
 
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-[13.5px] font-medium text-text-muted transition-colors hover:text-text"
+              className="rounded-full px-3 py-1.5 text-[13px] font-medium text-text-muted transition-colors hover:bg-surface-2 hover:text-text"
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-1.5 lg:flex">
           <ThemeToggle />
           <Link
             href="/dashboard"
-            className="text-[13.5px] font-medium text-text-muted transition-colors hover:text-text"
+            className="rounded-full px-3.5 py-2 text-[13px] font-medium text-text-muted transition-colors hover:text-text"
           >
             Log in
           </Link>
           <Link
             href="/community"
-            className="rounded-full bg-brand-blue px-4 py-2 text-[13.5px] font-semibold text-white shadow-[0_0_0_1px_rgba(37,99,235,0.4)] transition-all hover:bg-brand-blue-dim hover:shadow-[0_0_20px_rgba(37,99,235,0.45)]"
+            className="rounded-full bg-text px-4 py-2 text-[13px] font-semibold text-bg transition-opacity hover:opacity-85"
           >
-            Join the Community
+            Join Now
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
+        <div className="flex items-center gap-1.5 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-text"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-border text-text"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -86,14 +81,14 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border bg-bg px-6 pb-6 pt-2 lg:hidden">
+        <div className="mx-auto mt-2 max-w-6xl rounded-3xl border border-border bg-bg/95 px-4 pb-5 pt-3 shadow-[var(--shadow-premium)] backdrop-blur-xl lg:hidden">
           <div className="flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2.5 text-sm font-medium text-text-muted transition-colors hover:bg-surface-2 hover:text-text"
+                className="rounded-xl px-3 py-2.5 text-sm font-medium text-text-muted transition-colors hover:bg-surface-2 hover:text-text"
               >
                 {link.label}
               </Link>
@@ -102,16 +97,16 @@ export function Navbar() {
               <Link
                 href="/dashboard"
                 onClick={() => setOpen(false)}
-                className="rounded-lg border border-border px-3 py-2.5 text-center text-sm font-semibold text-text"
+                className="rounded-full border border-border px-3 py-2.5 text-center text-sm font-semibold text-text"
               >
                 Log in
               </Link>
               <Link
                 href="/community"
                 onClick={() => setOpen(false)}
-                className="rounded-full bg-brand-blue px-3 py-2.5 text-center text-sm font-semibold text-white"
+                className="rounded-full bg-text px-3 py-2.5 text-center text-sm font-semibold text-bg"
               >
-                Join the Community
+                Join Now
               </Link>
             </div>
           </div>

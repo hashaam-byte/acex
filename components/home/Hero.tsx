@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, PlayCircle, BadgeCheck } from "lucide-react";
+import { ArrowRight, PlayCircle } from "lucide-react";
 import { TradingDeviceMockup } from "./TradingDeviceMockup";
 import { FloatingChip } from "./FloatingChip";
 import { TrustAvatars } from "./TrustAvatars";
@@ -8,7 +8,7 @@ import { MarketTicker } from "./MarketTicker";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="bg-grain relative overflow-hidden">
       {/* ambient glow orbs */}
       <div
         aria-hidden
@@ -54,9 +54,9 @@ export function Hero() {
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-20 pt-14 lg:grid-cols-[1fr_1.05fr] lg:gap-8 lg:px-8 lg:pb-28 lg:pt-20">
         {/* Copy column */}
         <div className="relative z-10">
-          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
-            <BadgeCheck className="h-3.5 w-3.5 text-brand-cyan" />
-            Learn Forex &middot; Crypto &middot; Stocks
+          <span className="label-mono inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] text-text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse-slow" />
+            markets open · forex / crypto / stocks
           </span>
 
           <h1 className="mt-6 font-heading text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl">

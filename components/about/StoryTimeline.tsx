@@ -40,11 +40,11 @@ export function StoryTimeline() {
             Five years from first airdrop to building a full academy.
           </p>
         </div>
-
+ 
         <div className="mt-14 flex flex-col items-stretch lg:flex-row lg:items-center">
           {TIMELINE.map((step, i) => (
             <div key={step.year} className="flex flex-col items-center lg:flex-1 lg:flex-row">
-              <div className="w-full rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-border-strong">
+              <div className="transition-premium w-full rounded-3xl border border-border bg-surface p-5 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]">
                 <span className="inline-flex items-center rounded-full border border-brand-blue/30 bg-brand-blue/10 px-2.5 py-1 font-numeric text-xs font-semibold text-brand-blue">
                   {step.year}
                 </span>
@@ -53,7 +53,7 @@ export function StoryTimeline() {
                 </h3>
                 <p className="mt-1.5 text-xs leading-relaxed text-text-muted">{step.text}</p>
               </div>
-
+ 
               {i < TIMELINE.length - 1 && (
                 <div className="flex items-center justify-center py-2 lg:px-2 lg:py-0">
                   <ChevronDown className="h-4 w-4 shrink-0 text-brand-cyan lg:hidden" strokeWidth={2} />
