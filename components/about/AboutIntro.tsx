@@ -1,12 +1,16 @@
-import { MapPin, Mail, CalendarCheck } from "lucide-react";
+import Image from "next/image";
 import { PortraitCard } from "./PortraitCard";
 
 const ROLES = ["Professional Trader", "Tutor", "Mentor", "Financial Analyst"];
 
 const INFO = [
-  { icon: MapPin, label: "Location", value: "Nigeria 🇳🇬" },
-  { icon: Mail, label: "Email", value: "infonownation@gmail.com" },
-  { icon: CalendarCheck, label: "Availability", value: "Available to discuss with proven traders" },
+  { icon: "/icons/contact-location.png", label: "Location", value: "Nigeria 🇳🇬" },
+  { icon: "/icons/contact-email.png", label: "Email", value: "infonownation@gmail.com" },
+  {
+    icon: "/icons/contact-availability.png",
+    label: "Availability",
+    value: "Available to discuss with proven traders",
+  },
 ];
 
 export function AboutIntro() {
@@ -39,12 +43,14 @@ export function AboutIntro() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:flex-wrap">
-            {INFO.map(({ icon: Icon, label, value }) => (
+            {INFO.map(({ icon, label, value }) => (
               <div
                 key={label}
                 className="flex items-center gap-2.5 rounded-xl border border-border bg-surface px-3.5 py-2.5"
               >
-                <Icon className="h-4 w-4 shrink-0 text-brand-blue" strokeWidth={1.75} />
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center">
+                  <Image src={icon} alt="" width={24} height={24} className="h-full w-full object-contain" />
+                </div>
                 <div>
                   <p className="text-[10px] text-text-faint">{label}</p>
                   <p className="text-xs font-medium text-text">{value}</p>
@@ -54,7 +60,7 @@ export function AboutIntro() {
           </div>
 
           <blockquote className="mt-9 max-w-md rounded-2xl border border-border bg-surface p-6">
-            <p className="font-heading text-lg font-medium leading-snug text-text">
+                       <p className="font-heading text-lg font-medium leading-snug text-text">
               &ldquo;Trading is not about predicting the future
               <br />
              It is about using the past to understand the present.&rdquo;

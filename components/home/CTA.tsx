@@ -1,61 +1,55 @@
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export function CTA() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 px-8 py-16 text-center shadow-[0_0_80px_rgba(37,99,235,0.35)] sm:px-16">
-        {/* animated brand gradient backdrop */}
+      <div className="relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#050816] px-8 py-20 text-center sm:px-16">
+        {/* quiet, static glow — no color animation */}
         <div
           aria-hidden
-          className="absolute inset-0 animate-gradient-pan bg-[linear-gradient(120deg,#2563EB,#22D3EE,#2563EB)]"
+          className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[620px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-brand-blue/25 blur-[110px]"
         />
-        {/* soft top highlight */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.22),_transparent_60%)]"
+          className="pointer-events-none absolute bottom-0 right-0 h-[280px] w-[280px] translate-x-1/4 translate-y-1/4 rounded-full bg-brand-cyan/15 blur-[100px]"
         />
-        {/* sparkle accents */}
-        <Sparkles
+        {/* faint grid, Apple-keynote style */}
+        <div
           aria-hidden
-          className="animate-twinkle absolute left-[12%] top-8 h-4 w-4 text-white/70"
-          style={{ animationDelay: "0.3s" }}
-        />
-        <Sparkles
-          aria-hidden
-          className="animate-twinkle absolute right-[16%] top-14 h-3 w-3 text-white/60"
-          style={{ animationDelay: "1.1s" }}
-        />
-        <Sparkles
-          aria-hidden
-          className="animate-twinkle absolute bottom-10 left-[22%] h-3.5 w-3.5 text-white/50"
-          style={{ animationDelay: "1.7s" }}
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+            maskImage: "radial-gradient(ellipse 60% 60% at 50% 30%, black, transparent)",
+          }}
         />
 
-        <span className="relative inline-flex items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur">
-          <Sparkles className="h-3.5 w-3.5" />
-          Limited Onboarding Spots This Month
-        </span>
-
-        <h2 className="relative mt-5 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-          Ready to Start Your Trading Journey?
-        </h2>
-        <p className="relative mx-auto mt-3 max-w-md text-sm text-white/85">
-          Join thousands of traders who are learning, trading, and growing with AceX.
+        <p className="relative text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+          Start Today
         </p>
-        <div className="relative mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <h2 className="relative mx-auto mt-4 max-w-xl font-heading text-[2.25rem] font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl">
+          Ready to start your trading journey?
+        </h2>
+        <p className="relative mx-auto mt-4 max-w-sm text-[15px] leading-relaxed text-white/55">
+          Join a community of traders learning, trading, and growing with AceX.
+        </p>
+
+        <div className="relative mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/community"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-brand-blue-dim shadow-lg shadow-black/10 transition-transform hover:scale-[1.04]"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#050816] transition-transform hover:scale-[1.02]"
           >
             Join the Community
             <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/academy"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+            className="inline-flex items-center justify-center gap-1.5 px-6 py-3.5 text-sm font-medium text-white/70 transition-colors hover:text-white"
           >
             Start Learning
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </div>

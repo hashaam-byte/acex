@@ -1,23 +1,24 @@
-import { Sprout, Compass, Rocket, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import { CheckCircle2 } from "lucide-react";
 
 const PATHS = [
   {
     level: "Beginner",
-    icon: Sprout,
+    icon: "/icons/academy-beginner.png",
     tone: "green",
     tagline: "Start from zero, safely.",
     topics: ["Market Basics", "Wallets", "Exchanges", "Candlesticks"],
   },
   {
     level: "Intermediate",
-    icon: Compass,
+    icon: "/icons/academy-intermediate.png",
     tone: "blue",
     tagline: "Read structure like a pro.",
     topics: ["Technical Analysis", "Market Structure", "Liquidity", "Smart Money Concepts"],
   },
   {
     level: "Advanced",
-    icon: Rocket,
+    icon: "/icons/academy-advanced.png",
     tone: "purple",
     tagline: "Trade your own edge.",
     topics: ["Price Action", "Trading Psychology", "Risk Management", "Strategy Development"],
@@ -46,7 +47,7 @@ export function LearningPaths() {
   return (
     <section className="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8">
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {PATHS.map(({ level, icon: Icon, tone, tagline, topics }, i) => {
+        {PATHS.map(({ level, icon, tone, tagline, topics }, i) => {
           const tones = TONE_CLASSES[tone];
           return (
             <div
@@ -73,10 +74,8 @@ export function LearningPaths() {
                 Track {String(i + 1).padStart(2, "0")}
               </span>
 
-              <div
-                className={`relative mt-4 flex h-12 w-12 items-center justify-center rounded-full border ${tones.badge}`}
-              >
-                <Icon className={`h-5 w-5 ${tones.icon}`} strokeWidth={1.75} />
+              <div className="relative mt-4 flex h-14 w-14 items-center justify-center">
+                <Image src={icon} alt="" width={56} height={56} className="h-full w-full object-contain" />
               </div>
 
               <h3 className="relative mt-5 font-heading text-xl font-semibold text-text">

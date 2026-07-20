@@ -1,22 +1,13 @@
 "use client";
 
 /**
- * Signature hero visual: a hand-tuned candlestick sequence rendered as SVG,
- * drawn with a staggered rise-in animation and a traced trend line.
- * Deliberately uses the brand's blue/cyan for bullish candles instead of
- * the conventional green, per brand direction (green stays reserved for
- * small "gain" indicators elsewhere on the page).
+ * Coded (not rasterized) candlestick chart so it repaints correctly across
+ * light/dark themes. Bullish candles use brand blue/cyan instead of the
+ * conventional green, matching the rest of the site's palette.
  */
 
-type Candle = {
-  x: number;
-  open: number;
-  close: number;
-  high: number;
-  low: number;
-};
+type Candle = { x: number; open: number; close: number; high: number; low: number };
 
-// Deterministic candle series shaped like a confident uptrend with pullbacks.
 const CANDLES: Candle[] = [
   { x: 0, open: 210, close: 190, high: 216, low: 184 },
   { x: 1, open: 190, close: 198, high: 204, low: 182 },
@@ -44,8 +35,7 @@ export function CandleChart() {
 
   const linePoints = CANDLES.map((c, i) => {
     const cx = 20 + i * STEP + CANDLE_W / 2;
-    const cy = c.close;
-    return `${cx},${cy}`;
+    return `${cx},${c.close}`;
   }).join(" ");
 
   return (
@@ -67,29 +57,19 @@ export function CandleChart() {
         </linearGradient>
       </defs>
 
-      {/* subtle grid */}
       {[40, 90, 140, 190].map((y) => (
         <line key={y} x1="0" y1={y} x2={width} y2={y} stroke="currentColor" className="text-border" strokeWidth="1" />
       ))}
 
-      {/* area under trend */}
-      <polygon
-        points={`20,${height} ${linePoints} ${width - 20},${height}`}
-        fill="url(#areaFill)"
-      />
+      <polygon points={`20,${height} ${linePoints} ${width - 20},${height}`} fill="url(#areaFill)" />
 
-      {/* candles */}
       {CANDLES.map((c, i) => {
         const cx = 20 + i * STEP;
-        const isUp = c.close < c.open; // svg y grows downward, so "close < open" reads as price rose
+        const isUp = c.close < c.open;
         const bodyTop = Math.min(c.open, c.close);
         const bodyHeight = Math.max(Math.abs(c.close - c.open), 4);
         return (
-          <g
-            key={c.x}
-            className="animate-candle"
-            style={{ animationDelay: `${i * 55}ms` }}
-          >
+          <g key={c.x} className="animate-candle" style={{ animationDelay: `${i * 55}ms` }}>
             <line
               x1={cx + CANDLE_W / 2}
               x2={cx + CANDLE_W / 2}
@@ -112,7 +92,6 @@ export function CandleChart() {
         );
       })}
 
-      {/* traced trend line on top */}
       <polyline
         points={linePoints}
         fill="none"

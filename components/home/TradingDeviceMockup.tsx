@@ -1,3 +1,4 @@
+import { Bitcoin, Coins } from "lucide-react";
 import { CandleChart } from "./CandleChart";
 
 const WATCHLIST = [
@@ -9,14 +10,17 @@ const WATCHLIST = [
   { pair: "NASDAQ", price: "18,567.19", up: true },
 ];
 
-/**
- * A generic, coded device mockup (not a real device likeness) so the hero
- * shows live product UI instead of a stock render. Laptop screen carries the
- * watchlist + chart + account strip; the phone shows a single-pair view.
- */
 export function TradingDeviceMockup() {
   return (
     <div className="relative mx-auto w-full max-w-[560px]">
+      {/* floating coin badges */}
+      <div className="absolute -left-3 -top-6 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-amber-300/40 bg-surface shadow-[var(--shadow-card)] sm:-left-6">
+        <Bitcoin className="h-5 w-5 text-amber-400" strokeWidth={1.75} />
+      </div>
+      <div className="absolute -right-2 -top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-brand-blue/30 bg-surface shadow-[var(--shadow-card)] sm:-right-4">
+        <Coins className="h-4 w-4 text-brand-blue" strokeWidth={1.75} />
+      </div>
+
       {/* Laptop */}
       <div className="relative rounded-2xl border border-border-strong bg-surface p-2.5 shadow-[var(--shadow-card)]">
         <div className="flex items-center gap-1.5 px-1.5 pb-2">
@@ -32,23 +36,15 @@ export function TradingDeviceMockup() {
         </div>
 
         <div className="grid grid-cols-[110px_1fr] gap-2.5 rounded-xl bg-bg p-2.5">
-          {/* Watchlist */}
           <div className="hidden sm:block">
             <p className="px-1 text-[9px] font-medium uppercase tracking-wide text-text-faint">
               Watchlist
             </p>
             <ul className="mt-1.5 flex flex-col gap-1">
               {WATCHLIST.map((item) => (
-                <li
-                  key={item.pair}
-                  className="flex items-center justify-between rounded-md px-1.5 py-1 text-[9.5px]"
-                >
+                <li key={item.pair} className="flex items-center justify-between rounded-md px-1.5 py-1 text-[9.5px]">
                   <span className="text-text-muted">{item.pair}</span>
-                  <span
-                    className={`font-numeric ${
-                      item.up ? "text-brand-cyan" : "text-brand-red"
-                    }`}
-                  >
+                  <span className={`font-numeric ${item.up ? "text-brand-cyan" : "text-brand-red"}`}>
                     {item.price}
                   </span>
                 </li>
@@ -56,7 +52,6 @@ export function TradingDeviceMockup() {
             </ul>
           </div>
 
-          {/* Chart panel */}
           <div className="min-w-0 rounded-lg border border-border bg-surface">
             <div className="flex items-center justify-between px-3 pt-2.5">
               <div>
@@ -84,7 +79,6 @@ export function TradingDeviceMockup() {
             </div>
           </div>
 
-          {/* Account strip */}
           <div className="col-span-2 grid grid-cols-4 gap-1.5 border-t border-border pt-2">
             <DeviceStat label="Total Balance" value="$24,580.75" tone="up" />
             <DeviceStat label="Open P&amp;L" value="+$1,250.34" tone="up" />
@@ -93,7 +87,6 @@ export function TradingDeviceMockup() {
           </div>
         </div>
 
-        {/* laptop base */}
         <div className="mx-auto -mb-2.5 mt-1.5 h-2 w-[86%] rounded-b-xl bg-border-strong/60" />
       </div>
 
@@ -122,15 +115,7 @@ export function TradingDeviceMockup() {
   );
 }
 
-function DeviceStat({
-  label,
-  value,
-  tone,
-}: {
-  label: string;
-  value: string;
-  tone: "up" | "down" | "neutral";
-}) {
+function DeviceStat({ label, value, tone }: { label: string; value: string; tone: "up" | "down" | "neutral" }) {
   return (
     <div className="rounded-md bg-surface px-1.5 py-1.5">
       <p className="truncate text-[7.5px] text-text-faint">{label}</p>
