@@ -178,6 +178,19 @@ h1, h2, h3, h4, h5, h6 {
   animation: twinkle 2.4s ease-in-out infinite;
 }
 
+/* Slow continuous orb spin — long duration so it reads as "alive" ambient
+   motion rather than a spinning-wheel loader. */
+@keyframes spin-slow {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 40s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow { animation: none; }
+}
+
 /* ------------------------------------------------------------------ */
 /* Distinctive-surface utilities                                       */
 /* ------------------------------------------------------------------ */

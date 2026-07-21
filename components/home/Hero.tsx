@@ -96,16 +96,18 @@ export function Hero() {
 
         {/* Device mockup column */}
         <div className="relative z-10">
-          {/* Globe: sits behind the mockup, dimmed and blended into the dark background */}
-          <Image
-            src="/hero/globe.png"
-            alt=""
-            aria-hidden
-            width={640}
-            height={640}
-            priority
-            className="pointer-events-none absolute -top-24 left-1/2 -z-10 w-[440px] max-w-none -translate-x-1/2 opacity-0 mix-blend-screen dark:opacity-60 sm:w-[520px] lg:-top-32 lg:w-[560px]"
-          />
+          {/* Globe: sits behind the mockup, dimmed, slowly spinning */}
+          <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 lg:-top-32">
+            <Image
+              src="/hero/globe.png"
+              alt=""
+              aria-hidden
+              width={640}
+              height={640}
+              priority
+              className="animate-spin-slow w-[440px] max-w-none opacity-0 mix-blend-screen dark:opacity-60 sm:w-[520px] lg:w-[560px]"
+            />
+          </div>
 
           <FloatingChip symbol="EUR/USD" change="+0.32%" up className="-left-4 -top-6 lg:-left-8" />
           <FloatingChip symbol="GBP/USD" change="-0.15%" up={false} className="-left-6 bottom-16 lg:-left-10" />

@@ -7,7 +7,7 @@ const PLANS = [
     icon: "/icons/vip-starter.png",
     tagline: "For Beginners",
     price: "$55",
-    features: ["Access to Courses", "Community Access", "Weekly Market Update", "Basic Support"],
+    features: ["Daily Vip Signals", "Community Access", "Weekly Market Update", "Basic Support"],
     cta: "Get Started",
     featured: false,
   },
@@ -34,7 +34,7 @@ const PLANS = [
     price: "$255",
     features: [
       "All Pro Features",
-      "Daily VIP Signals",
+      "Portfolio Review",
       "1-on-1 Mentorship",
       "Exclusive Discord Access",
       "Private Live Sessions",

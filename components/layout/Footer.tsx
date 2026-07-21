@@ -10,7 +10,7 @@ const SOCIALS = [
   { label: "Telegram", href: "https://t.me", Icon: Send },
   { label: "Discord", href: "https://discord.com", Icon: MessageCircle },
   { label: "YouTube", href: "https://youtube.com", Icon: YoutubeIcon },
-  { label: "X", href: "https://x.com/Shad0w_Ace", Icon: XIcon },
+  { label: "X", href: "https://x.com", Icon: XIcon },
   { label: "Instagram", href: "https://instagram.com", Icon: InstagramIcon },
 ];
 
@@ -72,7 +72,7 @@ export function Footer() {
           <FooterColumn title="Legal" links={FOOTER_LINKS.legal} />
 
           <div className="col-span-2 md:col-span-1">
-            <h4 className="label-mono text-[11px] font-semibold text-text-faint">// newsletter</h4>
+            <h4 className="label-mono text-[11px] font-semibold text-text-faint">{"// newsletter"}</h4>
             <p className="mt-3 text-[13px] leading-relaxed text-text-faint">
               Weekly market notes, no noise.
             </p>

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function CTA() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-      <div className="relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#050816] px-8 py-20 text-center sm:px-16">
+      <Reveal className="relative overflow-hidden rounded-[28px] border border-white/[0.08] bg-[#050816] px-8 py-20 text-center sm:px-16">
         {/* quiet, static glow — no color animation */}
         <div
           aria-hidden
@@ -52,7 +53,7 @@ export function CTA() {
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

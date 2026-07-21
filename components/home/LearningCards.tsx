@@ -7,6 +7,7 @@ import {
   Waypoints,
 } from "lucide-react";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 import { FeatureStrip } from "./FeatureStrip";
 
 const TONE_CLASSES: Record<string, string> = {
@@ -19,18 +20,18 @@ const TONE_CLASSES: Record<string, string> = {
 export function LearningCards() {
   return (
     <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-      <div className="mx-auto max-w-xl text-center">
-        <p className="label-mono text-xs text-brand-blue">// curriculum</p>
+      <Reveal className="mx-auto max-w-xl text-center">
+        <p className="label-mono text-xs text-brand-blue">{"// curriculum"}</p>
         <h2 className="mt-2 font-heading text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           What <span className="text-brand-blue">You&apos;ll</span> Learn
         </h2>
         <p className="mt-3 text-sm text-text-muted">
           Master the essential skills and strategies used by professional traders.
         </p>
-      </div>
+      </Reveal>
 
       {/* Bento grid — deliberately asymmetric instead of a uniform 3x2 */}
-      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
+      <Reveal delay={100} className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
         <BentoCard
           icon={LineChart}
           title="Forex Trading"
@@ -84,7 +85,7 @@ export function LearningCards() {
           </div>
           <MiniSparkline />
         </SpotlightCard>
-      </div>
+      </Reveal>
 
       <FeatureStrip />
     </section>
