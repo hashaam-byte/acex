@@ -92,7 +92,7 @@ export function MembershipPlans() {
               >
                 {plan.price}
               </span>
-              <span className="text-sm text-text-faint">/month</span>
+              <span className="text-sm text-text-faint">{plan.gold ? "/2 months" : "/month"}</span>
             </p>
 
             <ul className="mt-6 flex flex-col gap-3 border-t border-border pt-6">

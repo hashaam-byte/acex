@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 const PATHS = [
   {
     level: "Beginner",
+    price: "$55",
     icon: "/icons/academy-beginner.png",
     tone: "green",
     tagline: "Start from zero, safely.",
@@ -13,6 +14,7 @@ const PATHS = [
   },
   {
     level: "Intermediate",
+    price: "$105",
     icon: "/icons/academy-intermediate.png",
     tone: "blue",
     tagline: "Read structure like a pro.",
@@ -20,6 +22,7 @@ const PATHS = [
   },
   {
     level: "Advanced",
+    price: "$225",
     icon: "/icons/academy-advanced.png",
     tone: "purple",
     tagline: "Trade your own edge.",
@@ -49,7 +52,7 @@ export function LearningPaths() {
   return (
     <section className="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8">
       <Reveal className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {PATHS.map(({ level, icon, tone, tagline, topics }, i) => {
+        {PATHS.map(({ level, price, icon, tone, tagline, topics }, i) => {
           const tones = TONE_CLASSES[tone];
           return (
             <SpotlightCard
@@ -72,9 +75,12 @@ export function LearningPaths() {
                 }}
               />
 
-              <span className="relative font-numeric text-xs text-text-faint">
-                Track {String(i + 1).padStart(2, "0")}
-              </span>
+              <div className="relative flex items-center justify-between">
+                <span className="font-numeric text-xs text-text-faint">
+                  Track {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-numeric text-lg font-semibold text-text">{price}</span>
+              </div>
 
               <div className="relative mt-4 flex h-14 w-14 items-center justify-center">
                 <Image src={icon} alt="" width={56} height={56} className="h-full w-full object-contain" />
