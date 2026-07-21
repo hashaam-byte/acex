@@ -23,18 +23,21 @@ export function PortraitCard() {
         className="absolute -top-16 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-brand-blue/25 blur-[90px]"
       />
 
-      <div className="relative flex h-full flex-col items-center justify-center gap-4 px-8 text-center">
-        <Image
-          src="/about/founder-portrait.jpg"
-          alt="AceX founder portrait illustration"
-          width={120}
-          height={150}
-          className="h-28 w-24 rounded-2xl border border-border-strong object-cover shadow-sm"
-        />
-        <div>
-          <p className="font-heading text-lg font-semibold text-text">AceX</p>
-          <p className="text-xs text-text-faint">Founder &amp; Lead Mentor</p>
+      <div className="relative mx-auto w-full max-w-[260px] flex-shrink-0 overflow-hidden rounded-[1.75rem] border border-border-strong shadow-sm">
+        <div className="relative aspect-square w-full">
+          <Image
+            src="/about/founder-portrait.jpg"
+            alt="AceX founder portrait illustration"
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, 260px"
+          />
         </div>
+      </div>
+
+      <div className="mt-5 text-center">
+        <p className="font-heading text-lg font-semibold text-text">AceX</p>
+        <p className="text-xs text-text-faint">Founder &amp; Lead Mentor</p>
       </div>
 
       <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between rounded-xl border border-border-strong bg-surface/90 px-3.5 py-2.5 backdrop-blur">
