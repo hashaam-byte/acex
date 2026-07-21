@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ArrowUpDown, Calculator, TrendingUp, TrendingDown } from "lucide-react";
-import { useLivePrices } from "@/lib/useLivePrices";
+import { useLivePrices } from "@/lib/UseLivePrices";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { Reveal } from "@/components/ui/Reveal";
 
