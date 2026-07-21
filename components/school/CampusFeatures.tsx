@@ -1,4 +1,6 @@
 import { Building2, FlaskConical, Presentation, Users, Library, School as SchoolIcon } from "lucide-react";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const FEATURES = [
   { icon: Building2, title: "Physical Campus", description: "A dedicated home for hands-on trading education." },
@@ -19,9 +21,9 @@ export function CampusFeatures() {
         <p className="mt-3 text-sm text-text-muted">What the physical campus will bring together.</p>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Reveal className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {FEATURES.map(({ icon: Icon, title, description }) => (
-          <div
+          <SpotlightCard
             key={title}
             className="transition-premium rounded-3xl border border-border bg-surface p-6 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]"
           >
@@ -30,9 +32,9 @@ export function CampusFeatures() {
             </div>
             <h3 className="mt-4 font-heading text-base font-semibold text-text">{title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-text-muted">{description}</p>
-          </div>
+          </SpotlightCard>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

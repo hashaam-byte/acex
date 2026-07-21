@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Sparkles } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function SchoolHero() {
   return (
@@ -9,7 +10,7 @@ export function SchoolHero() {
         className="pointer-events-none absolute left-1/2 top-0 h-[320px] w-[600px] -translate-x-1/2 rounded-full bg-brand-blue/15 blur-[130px]"
       />
 
-      <div className="relative mx-auto max-w-3xl px-6 pt-20 text-center lg:px-8 lg:pt-24">
+      <Reveal className="relative mx-auto max-w-3xl px-6 pt-20 text-center lg:px-8 lg:pt-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
           <Sparkles className="h-3.5 w-3.5 text-brand-cyan" />
           Coming Soon
@@ -22,9 +23,9 @@ export function SchoolHero() {
           academy where aspiring traders can learn, collaborate, and master the financial markets
           together.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="relative mx-auto mt-12 max-w-5xl px-6 lg:px-8">
+      <Reveal delay={100} className="relative mx-auto mt-12 max-w-5xl px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-card)]">
           <Image
             src="/school/campus.jpg"
@@ -42,7 +43,7 @@ export function SchoolHero() {
             </p>
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 const CATEGORIES = [
   "All",
   "Crypto",
@@ -27,7 +29,7 @@ export function BlogHero() {
           maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-3xl px-6 pt-20 text-center lg:px-8 lg:pt-24">
+      <Reveal className="relative mx-auto max-w-3xl px-6 pt-20 text-center lg:px-8 lg:pt-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan" />
           Insights &amp; Market Notes
@@ -38,9 +40,9 @@ export function BlogHero() {
         <p className="mx-auto mt-5 max-w-[52ch] text-[15px] leading-relaxed text-text-muted">
           Strategy breakdowns, market updates, and lessons from inside the AceX community.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="relative mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2 px-6 lg:px-8">
+      <Reveal delay={100} className="relative mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2 px-6 lg:px-8">
         {CATEGORIES.map((cat, i) => (
           <span
             key={cat}
@@ -53,7 +55,7 @@ export function BlogHero() {
             {cat}
           </span>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

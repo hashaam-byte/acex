@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PortraitCard } from "./PortraitCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const ROLES = ["Professional Trader", "Tutor", "Mentor", "Financial Analyst"];
 
@@ -22,7 +23,7 @@ export function AboutIntro() {
       />
 
       <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12 lg:px-8 lg:py-24">
-        <div className="relative z-10 order-2 lg:order-1">
+        <Reveal className="relative z-10 order-2 lg:order-1">
           <h1 className="font-heading text-4xl font-semibold tracking-tight text-text sm:text-5xl">
             About <span className="text-brand-blue">AceX</span>
           </h1>
@@ -59,19 +60,19 @@ export function AboutIntro() {
             ))}
           </div>
 
-          <blockquote className="mt-9 max-w-md rounded-2xl border border-border bg-surface p-6">
-                       <p className="font-heading text-lg font-medium leading-snug text-text">
+          <blockquote className="transition-premium mt-9 max-w-md rounded-2xl border border-border bg-surface p-6 hover:border-border-strong hover:shadow-[var(--shadow-card)]">
+            <p className="font-heading text-lg font-medium leading-snug text-text">
               &ldquo;Trading is not about predicting the future -
               <br />
-             It is about using the past to understand the present.&rdquo;
+              It is about using the past to understand the present.&rdquo;
             </p>
             <footer className="mt-3 text-xs text-text-faint">— AceX</footer>
           </blockquote>
-        </div>
+        </Reveal>
 
-        <div className="relative z-10 order-1 lg:order-2">
+        <Reveal delay={100} className="relative z-10 order-1 lg:order-2">
           <PortraitCard />
-        </div>
+        </Reveal>
       </div>
     </section>
   );

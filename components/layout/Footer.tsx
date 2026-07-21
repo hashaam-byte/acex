@@ -7,10 +7,10 @@ import { FOOTER_LINKS } from "@/lib/nav";
 import { YoutubeIcon, XIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 
 const SOCIALS = [
-  { label: "Telegram", href: "https://t.me", Icon: Send },
+  { label: "Telegram", href: "https://t.me/AceXTradingAcademy", Icon: Send },
   { label: "Discord", href: "https://discord.com", Icon: MessageCircle },
   { label: "YouTube", href: "https://youtube.com", Icon: YoutubeIcon },
-  { label: "X", href: "https://x.com", Icon: XIcon },
+  { label: "X", href: "https://x.com/Shad0w_Ace", Icon: XIcon },
   { label: "Instagram", href: "https://instagram.com", Icon: InstagramIcon },
 ];
 

@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   BarChart3,
   Video,
@@ -27,9 +29,9 @@ const PERKS = [
 export function VipPerks() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <Reveal className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {PERKS.map(({ icon: Icon, image, label }) => (
-          <div
+          <SpotlightCard
             key={label}
             className="transition-premium flex flex-col items-center gap-2.5 rounded-3xl border border-border bg-surface px-4 py-6 text-center hover:-translate-y-0.5 hover:border-amber-300/40 hover:shadow-[var(--shadow-card)]"
           >
@@ -43,9 +45,9 @@ export function VipPerks() {
               </div>
             )}
             <p className="text-xs font-medium text-text">{label}</p>
-          </div>
+          </SpotlightCard>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

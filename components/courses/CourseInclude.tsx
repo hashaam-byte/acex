@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Reveal } from "@/components/ui/Reveal";
 
 const INCLUDES = [
   { icon: "/icons/include-videos.png", label: "Videos" },
@@ -16,7 +17,7 @@ export function CourseIncludes() {
         <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-text-faint">
           Every Course Includes
         </p>
-        <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+        <Reveal className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
           {INCLUDES.map(({ icon, label }) => (
             <div key={label} className="flex flex-col items-center gap-2 text-center">
               <div className="flex h-12 w-12 items-center justify-center">
@@ -25,7 +26,7 @@ export function CourseIncludes() {
               <p className="text-xs font-medium text-text-muted">{label}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

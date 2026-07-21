@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const COURSES = [
   {
@@ -54,9 +56,9 @@ const COURSES = [
 export function CourseGrid() {
   return (
     <section className="mx-auto max-w-7xl px-6 pb-24 lg:px-8">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <Reveal className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {COURSES.map(({ icon, title, lessons, level, highlight }) => (
-          <div
+          <SpotlightCard
             key={title}
             className={`group transition-premium flex flex-col rounded-3xl border p-6 hover:-translate-y-1 hover:shadow-[var(--shadow-premium)] ${
               highlight
@@ -88,9 +90,9 @@ export function CourseGrid() {
             >
               {highlight ? "Apply for VIP" : "View Course"}
             </button>
-          </div>
+          </SpotlightCard>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

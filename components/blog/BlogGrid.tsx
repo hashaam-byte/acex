@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Reveal } from "@/components/ui/Reveal";
 import { Coins, LineChart, TrendingUp, Brain, ShieldCheck, BarChart3, Clock, ArrowRight } from "lucide-react";
 
 const POSTS = [
@@ -75,7 +76,7 @@ const TONE_BG: Record<string, string> = {
 export function BlogGrid() {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <Reveal className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {POSTS.map(({ title, excerpt, category, date, readTime, icon: Icon, tone }) => (
           <Link
             key={title}
@@ -112,7 +113,7 @@ export function BlogGrid() {
             </div>
           </Link>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

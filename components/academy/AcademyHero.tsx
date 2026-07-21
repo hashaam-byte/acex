@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function AcademyHero() {
   return (
     <section className="relative overflow-hidden">
@@ -15,10 +17,10 @@ export function AcademyHero() {
           maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan" />
-          Structured Learning Paths
+      <Reveal className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
+        <span className="label-mono inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] text-text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse-slow" />
+          structured_learning_paths
         </span>
         <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-text sm:text-5xl">
           The <span className="text-brand-blue">Academy</span>
@@ -28,7 +30,7 @@ export function AcademyHero() {
           development. Move at your own pace, or follow the track we recommend for traders at
           your stage.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }

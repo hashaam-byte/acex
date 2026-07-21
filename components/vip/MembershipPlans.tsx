@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Check } from "lucide-react";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const PLANS = [
   {
@@ -48,20 +50,20 @@ const PLANS = [
 export function MembershipPlans() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24 lg:px-8">
-      <div className="mx-auto max-w-xl text-center">
+      <Reveal className="mx-auto max-w-xl text-center">
         <h2 className="font-heading text-3xl font-semibold tracking-tight text-text sm:text-4xl">
           Membership <span className="text-brand-blue">Plans</span>
         </h2>
         <p className="mt-3 text-sm text-text-muted">
           Choose the perfect plan for your trading journey.
         </p>
-      </div>
+      </Reveal>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+      <Reveal delay={100} className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
         {PLANS.map((plan) => (
-          <div
+          <SpotlightCard
             key={plan.name}
-            className={`relative flex flex-col rounded-3xl border p-7 ${
+            className={`transition-premium relative flex flex-col rounded-3xl border p-7 hover:shadow-[var(--shadow-premium)] ${
               plan.featured
                 ? "border-brand-blue bg-surface shadow-[0_0_50px_rgba(37,99,235,0.25)] lg:-translate-y-3"
                 : plan.gold
@@ -117,9 +119,9 @@ export function MembershipPlans() {
             >
               {plan.cta}
             </button>
-          </div>
+          </SpotlightCard>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

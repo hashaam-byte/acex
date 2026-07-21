@@ -1,4 +1,5 @@
 import { Crown } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function VipHero() {
   return (
@@ -17,7 +18,7 @@ export function VipHero() {
           maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
+      <Reveal className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-amber-300/30 bg-amber-300/10 px-3.5 py-1.5 text-xs font-medium text-amber-300">
           <Crown className="h-3.5 w-3.5" />
           Exclusive High-Probability Setups
@@ -29,7 +30,7 @@ export function VipHero() {
           Daily signals, live trading sessions, and direct mentorship — for traders ready to move
           from learning to executing with an edge.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }

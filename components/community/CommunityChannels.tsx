@@ -1,4 +1,5 @@
 import { MessageCircle, Send, Phone, ExternalLink } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 const CHANNELS = [
   {
@@ -14,7 +15,7 @@ const CHANNELS = [
     name: "Telegram",
     description: "Fast announcements, session recaps, and quick-fire Q&A.",
     members: "9,800+ subscribers",
-    href: "https://t.me",
+    href: "https://t.me/AceXTradingAcademy",
     tone: "border-brand-blue/30 bg-brand-blue/10 text-brand-blue",
   },
   {
@@ -30,7 +31,7 @@ const CHANNELS = [
 export function CommunityChannels() {
   return (
     <section className="mx-auto max-w-6xl px-6 pb-20 lg:px-8">
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <Reveal className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {CHANNELS.map(({ icon: Icon, name, description, members, href, tone }) => (
           <a
             key={name}
@@ -50,7 +51,7 @@ export function CommunityChannels() {
             <p className="mt-4 font-numeric text-xs font-medium text-text-faint">{members}</p>
           </a>
         ))}
-      </div>
+      </Reveal>
     </section>
   );
 }

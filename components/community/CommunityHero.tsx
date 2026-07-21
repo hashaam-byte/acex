@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function CommunityHero() {
   return (
     <section className="relative overflow-hidden">
@@ -15,7 +17,7 @@ export function CommunityHero() {
           maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
+      <Reveal className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan" />
           Connect. Learn. Grow Together.
@@ -27,7 +29,7 @@ export function CommunityHero() {
           Thousands of traders across 20+ countries, sharing setups, reviewing trades, and holding
           each other accountable — every single day.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }

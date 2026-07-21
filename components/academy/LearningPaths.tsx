@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const PATHS = [
   {
@@ -46,13 +48,13 @@ const TONE_CLASSES: Record<string, { badge: string; icon: string; glow: string }
 export function LearningPaths() {
   return (
     <section className="relative mx-auto max-w-7xl px-6 pb-24 lg:px-8">
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <Reveal className="grid grid-cols-1 gap-5 lg:grid-cols-3">
         {PATHS.map(({ level, icon, tone, tagline, topics }, i) => {
           const tones = TONE_CLASSES[tone];
           return (
-            <div
+            <SpotlightCard
               key={level}
-              className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-surface p-7 transition-colors hover:border-border-strong"
+              className="group transition-premium relative flex flex-col overflow-hidden rounded-3xl border border-border bg-surface p-7 hover:-translate-y-1 hover:border-border-strong hover:shadow-[var(--shadow-premium)]"
             >
               {/* ambient glow, tinted per level */}
               <div
@@ -91,10 +93,10 @@ export function LearningPaths() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </SpotlightCard>
           );
         })}
-      </div>
+      </Reveal>
     </section>
   );
 }

@@ -1,11 +1,12 @@
 "use client";
 
 import { Bell } from "lucide-react";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function NotifyForm() {
   return (
     <section className="border-t border-border bg-surface/30">
-      <div className="mx-auto max-w-2xl px-6 py-20 text-center lg:px-8">
+      <Reveal className="mx-auto max-w-2xl px-6 py-20 text-center lg:px-8">
         <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-brand-blue/25 bg-brand-blue/10">
           <Bell className="h-5 w-5 text-brand-blue" strokeWidth={1.75} />
         </div>
@@ -33,7 +34,7 @@ export function NotifyForm() {
             Notify Me
           </button>
         </form>
-      </div>
+      </Reveal>
     </section>
   );
 }

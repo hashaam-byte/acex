@@ -1,4 +1,6 @@
 import { Trophy, BarChart3, CalendarDays, Gift } from "lucide-react";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import { Reveal } from "@/components/ui/Reveal";
 
 const FEATURES = [
   {
@@ -27,18 +29,18 @@ export function CommunityFeatures() {
   return (
     <section className="border-t border-border bg-surface/30">
       <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8">
-        <div className="mx-auto max-w-xl text-center">
+        <Reveal className="mx-auto max-w-xl text-center">
           <h2 className="font-heading text-3xl font-semibold tracking-tight text-text sm:text-4xl">
             More Than <span className="text-brand-blue">a Chat Room</span>
           </h2>
           <p className="mt-3 text-sm text-text-muted">
             Structure and accountability, not just noise.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal delay={100} className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.map(({ icon: Icon, title, description }) => (
-            <div
+            <SpotlightCard
               key={title}
               className="transition-premium rounded-3xl border border-border bg-surface p-6 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-[var(--shadow-card)]"
             >
@@ -47,9 +49,9 @@ export function CommunityFeatures() {
               </div>
               <h3 className="mt-4 font-heading text-base font-semibold text-text">{title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-text-muted">{description}</p>
-            </div>
+            </SpotlightCard>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

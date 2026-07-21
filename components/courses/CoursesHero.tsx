@@ -1,3 +1,5 @@
+import { Reveal } from "@/components/ui/Reveal";
+
 export function CoursesHero() {
   return (
     <section className="relative overflow-hidden">
@@ -15,10 +17,10 @@ export function CoursesHero() {
           maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
         }}
       />
-      <div className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs font-medium text-text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan" />
-          Learn at Your Own Pace
+      <Reveal className="relative mx-auto max-w-3xl px-6 py-20 text-center lg:px-8 lg:py-24">
+        <span className="label-mono inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] text-text-muted">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-cyan animate-pulse-slow" />
+          learn_at_your_own_pace
         </span>
         <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-text sm:text-5xl">
           Our <span className="text-brand-blue">Courses</span>
@@ -27,7 +29,7 @@ export function CoursesHero() {
           Expert-designed courses covering everything from your first trade to advanced
           strategy — video lessons, notes, assignments, and live sessions included.
         </p>
-      </div>
+      </Reveal>
     </section>
   );
 }
