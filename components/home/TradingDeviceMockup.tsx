@@ -3,6 +3,7 @@
 import { Bitcoin, Coins } from "lucide-react";
 import { CandleChart } from "./CandleChart";
 import { useLivePrices } from "@/lib/UseLivePrices";
+import { usePriceFlash } from "@/lib/UsePriceFlash";
 
 const STATIC_WATCHLIST = [
   { pair: "EUR/USD", price: "1.0845", up: true },
@@ -15,6 +16,8 @@ export function TradingDeviceMockup() {
   const { prices, isLive } = useLivePrices();
   const btc = prices.bitcoin;
   const eth = prices.ethereum;
+  const btcFlash = usePriceFlash(btc?.usd);
+  const ethFlash = usePriceFlash(eth?.usd);
 
   const watchlist = [
     ...STATIC_WATCHLIST.slice(0, 3),
@@ -82,7 +85,11 @@ export function TradingDeviceMockup() {
             <div className="flex items-center justify-between px-3 pt-2.5">
               <div>
                 <p className="text-[9px] text-text-faint">BTC / USD</p>
-                <p className="font-numeric text-sm font-semibold text-text">
+                <p
+                  className={`font-numeric rounded text-sm font-semibold text-text ${
+                    btcFlash === "up" ? "flash-up" : btcFlash === "down" ? "flash-down" : ""
+                  }`}
+                >
                   {btc ? btc.usd.toLocaleString(undefined, { maximumFractionDigits: 0 }) : "—"}
                   <span
                     className={`ml-1.5 text-[10px] font-medium ${
@@ -126,7 +133,11 @@ export function TradingDeviceMockup() {
       <div className="absolute -bottom-8 -right-4 w-[108px] rounded-[20px] border border-border-strong bg-surface p-1.5 shadow-[var(--shadow-card)] sm:-right-10 sm:w-[124px]">
         <div className="rounded-[14px] bg-bg p-2">
           <p className="text-[8px] text-text-faint">ETH / USD</p>
-          <p className="font-numeric text-[13px] font-semibold text-text">
+          <p
+            className={`font-numeric rounded text-[13px] font-semibold text-text ${
+              ethFlash === "up" ? "flash-up" : ethFlash === "down" ? "flash-down" : ""
+            }`}
+          >
             {eth ? eth.usd.toLocaleString(undefined, { maximumFractionDigits: 0 }) : "—"}
             <span
               className={`ml-1 text-[8px] font-medium ${

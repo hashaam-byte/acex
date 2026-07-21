@@ -270,3 +270,16 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-mono), ui-monospace, monospace;
   letter-spacing: 0.02em;
 }
+
+/* Brief highlight flash when a live price value updates — the visual cue
+   that data is actually refreshing, not just static numbers. */
+@keyframes flash-up {
+  0% { background-color: rgba(34, 211, 238, 0.28); }
+  100% { background-color: transparent; }
+}
+@keyframes flash-down {
+  0% { background-color: rgba(244, 63, 94, 0.22); }
+  100% { background-color: transparent; }
+}
+.flash-up { animation: flash-up 900ms ease-out; }
+.flash-down { animation: flash-down 900ms ease-out; }

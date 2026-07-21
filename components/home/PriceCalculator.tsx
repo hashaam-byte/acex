@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { ArrowUpDown, Calculator, TrendingUp, TrendingDown } from "lucide-react";
 import { useLivePrices } from "@/lib/UseLivePrices";
+import { usePriceFlash } from "@/lib/UsePriceFlash";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -21,6 +22,7 @@ export function PriceCalculator() {
 
   const asset = ASSETS.find((a) => a.id === assetId)!;
   const price = prices[assetId];
+  const priceFlash = usePriceFlash(price?.usd);
 
   const result = useMemo(() => {
     const n = parseFloat(amount);
@@ -81,7 +83,11 @@ export function PriceCalculator() {
 
             {/* current price — big ticker-style readout */}
             <div className="relative mt-6 flex items-baseline gap-3">
-              <span className="font-numeric text-4xl font-semibold tabular-nums tracking-tight text-text sm:text-5xl">
+              <span
+                className={`font-numeric rounded-lg px-1 text-4xl font-semibold tabular-nums tracking-tight text-text sm:text-5xl ${
+                  priceFlash === "up" ? "flash-up" : priceFlash === "down" ? "flash-down" : ""
+                }`}
+              >
                 {loading && !price
                   ? "—"
                   : price

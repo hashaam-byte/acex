@@ -51,7 +51,7 @@ export function Hero() {
         ))}
       </svg>
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-20 pt-14 lg:grid-cols-[1fr_1.05fr] lg:gap-8 lg:px-8 lg:pb-28 lg:pt-20">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 pb-20 pt-14 lg:grid-cols-[1fr_1.05fr] lg:items-start lg:gap-8 lg:px-8 lg:pb-28 lg:pt-20">
         {/* Copy column */}
         <div className="relative z-10">
           <span className="label-mono inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3.5 py-1.5 text-[11px] text-text-muted">
@@ -94,10 +94,10 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Device mockup column */}
-        <div className="relative z-10">
+        {/* Device mockup column — shifted down a little relative to the headline */}
+        <div className="relative z-10 pt-8 lg:pt-20">
           {/* Globe: sits behind the mockup, dimmed, slowly spinning */}
-          <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 lg:-top-32">
+          <div className="pointer-events-none absolute -top-24 left-1/2 -z-10 lg:-top-28">
             <Image
               src="/hero/globe.png"
               alt=""
@@ -112,9 +112,7 @@ export function Hero() {
           <FloatingChip symbol="EUR/USD" change="+0.32%" up className="-left-4 -top-6 lg:-left-8" />
           <FloatingChip symbol="GBP/USD" change="-0.15%" up={false} className="-left-6 bottom-16 lg:-left-10" />
 
-          <div className="pt-8">
-            <TradingDeviceMockup />
-          </div>
+          <TradingDeviceMockup />
         </div>
       </div>
 
