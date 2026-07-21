@@ -2,10 +2,8 @@ import Image from "next/image";
 import { TrendingUp } from "lucide-react";
 
 /**
- * Placeholder for a real founder portrait. Built from brand elements (logo
- * mark, monogram, chart texture) rather than a fabricated "photo" of a
- * person who doesn't exist — swap the commented block below for a real
- * <Image src="/about/founder.jpg" /> when a photo is available.
+ * Branded founder portrait placeholder. Swap this with a real photo later by
+ * changing the src to /about/founder.jpg once a final image is available.
  */
 export function PortraitCard() {
   return (
@@ -27,11 +25,11 @@ export function PortraitCard() {
 
       <div className="relative flex h-full flex-col items-center justify-center gap-4 px-8 text-center">
         <Image
-          src="/logo/acex-mark.png"
-          alt="AceX"
-          width={88}
-          height={88}
-          className="h-20 w-20"
+          src="/about/founder-portrait.jpg"
+          alt="AceX founder portrait illustration"
+          width={120}
+          height={150}
+          className="h-28 w-24 rounded-2xl border border-border-strong object-cover shadow-sm"
         />
         <div>
           <p className="font-heading text-lg font-semibold text-text">AceX</p>
