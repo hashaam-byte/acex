@@ -38,7 +38,7 @@ export function AboutIntro() {
           </div>
 
           <p className="mt-6 max-w-[56ch] text-[15px] leading-relaxed text-text-muted">
-            I am AceX — a professional trader, tutor, mentor, and financial analyst. I strive to
+            I am AceX — a seasoned crypto trader. I strive to
             attain complete financial freedom, and to put others on that same path through proper
             education, mentorship, and proven trading knowledge.
           </p>

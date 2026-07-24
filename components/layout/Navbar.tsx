@@ -36,7 +36,7 @@ export function Navbar() {
             className="h-7 w-7 shrink-0"
             priority
           />
-          <span className="font-heading text-sm font-semibold tracking-tight text-text">AceX</span>
+          <span className="font-heading text-sm font-semibold tracking-tight text-text">AceX Trading Academy</span>
         </Link>
 
         <div className="hidden items-center gap-0.5 lg:flex">

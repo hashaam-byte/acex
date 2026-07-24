@@ -1,0 +1,201 @@
+// AceX Trading Academy — database schema
+// Provider: PostgreSQL (designed against Neon, works with any Postgres)
+//
+// After connecting a real DATABASE_URL:
+//   npx prisma generate     — generates the typed client
+//   npx prisma migrate dev  — creates the tables
+//   npx prisma db seed      — creates the first admin user (see prisma/seed.ts)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+// ---------------------------------------------------------------------------
+// Auth — single admin for now; the model supports adding more admins later
+// without a schema change.
+// ---------------------------------------------------------------------------
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Courses
+// ---------------------------------------------------------------------------
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  ALL_LEVELS
+}
+
+model Course {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  title       String
+  description String
+  level       CourseLevel @default(BEGINNER)
+  category    String // "Crypto" | "Forex" | "Stocks" | "Risk Management" | "Psychology" | "VIP"
+  iconKey     String? // references a known icon in the frontend icon map
+  priceCents  Int         @default(0)
+  isHighlight Boolean     @default(false) // e.g. VIP Mentorship Program styling
+  isPublished Boolean     @default(true)
+  order       Int         @default(0)
+  lessons     Lesson[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Lesson {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title     String
+  videoUrl  String?
+  content   String? // markdown body
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+}
+
+// ---------------------------------------------------------------------------
+// Blog
+// ---------------------------------------------------------------------------
+model BlogPost {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  content       String // markdown body
+  category      String
+  coverImageUrl String?
+  readTimeMins  Int       @default(5)
+  isPublished   Boolean   @default(true)
+  publishedAt   DateTime  @default(now())
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Pricing / Membership plans
+// ---------------------------------------------------------------------------
+model PricingPlan {
+  id          String   @id @default(cuid())
+  name        String // "Starter" | "Pro Trader" | "Elite VIP"
+  tagline     String
+  priceCents  Int
+  interval    String   @default("month")
+  features    String[] // ordered list of feature strings
+  ctaLabel    String   @default("Get Started")
+  isFeatured  Boolean  @default(false) // "Most Popular" ribbon
+  isGold      Boolean  @default(false) // Elite-tier styling
+  order       Int      @default(0)
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// VIP trading signals
+// ---------------------------------------------------------------------------
+enum SignalDirection {
+  LONG
+  SHORT
+  BUY
+  SELL
+}
+
+model VipSignal {
+  id            String          @id @default(cuid())
+  symbol        String // "BTC/USDT"
+  direction     SignalDirection
+  changePercent Float
+  note          String?
+  isActive      Boolean         @default(true)
+  postedAt      DateTime        @default(now())
+  createdAt     DateTime        @default(now())
+}
+
+// ---------------------------------------------------------------------------
+// Students
+// ---------------------------------------------------------------------------
+model Student {
+  id        String    @id @default(cuid())
+  name      String
+  email     String    @unique
+  country   String?
+  planId    String?
+  plan      String? // denormalized plan name at signup time, for quick display
+  joinedAt  DateTime  @default(now())
+  payments  Payment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Payments
+// ---------------------------------------------------------------------------
+enum PaymentProvider {
+  STRIPE
+  PAYSTACK
+  FLUTTERWAVE
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+model Payment {
+  id            String          @id @default(cuid())
+  studentId     String
+  student       Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  planName      String
+  amountCents   Int
+  currency      String          @default("USD")
+  provider      PaymentProvider
+  providerRef   String? // external charge/session id
+  status        PaymentStatus   @default(PENDING)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@index([studentId])
+}
+
+// ---------------------------------------------------------------------------
+// Legal pages
+// ---------------------------------------------------------------------------
+model LegalPage {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ---------------------------------------------------------------------------
+// Site settings — generic key/value store for homepage stats and small bits
+// of copy the admin should be able to edit without a schema change
+// (e.g. "student_rating": "4.9/5", "students_count": "160+").
+// ---------------------------------------------------------------------------
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+
