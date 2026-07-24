@@ -7,131 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model AdminUser {
-  id           String   @id @default(cuid())
-  email        String   @unique
-  passwordHash String
-  name         String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model Course {
-  id          String      @id @default(cuid())
-  slug        String      @unique
-  title       String
-  description String
-  level       CourseLevel @default(BEGINNER)
-  category    String
-  iconKey     String?
-  priceCents  Int         @default(0)
-  isHighlight Boolean     @default(false)
-  isPublished Boolean     @default(true)
-  order       Int         @default(0)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  lessons     Lesson[]
-}
-
-model Lesson {
-  id        String   @id @default(cuid())
-  courseId  String
-  title     String
-  videoUrl  String?
-  content   String?
-  order     Int      @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
-
-  @@index([courseId])
-}
-
-model BlogPost {
-  id            String   @id @default(cuid())
-  slug          String   @unique
-  title         String
-  excerpt       String
-  content       String
-  category      String
-  coverImageUrl String?
-  readTimeMins  Int      @default(5)
-  isPublished   Boolean  @default(true)
-  publishedAt   DateTime @default(now())
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-}
-
-model PricingPlan {
-  id          String   @id @default(cuid())
-  name        String
-  tagline     String
-  priceCents  Int
-  interval    String   @default("month")
-  features    String[]
-  ctaLabel    String   @default("Get Started")
-  isFeatured  Boolean  @default(false)
-  isGold      Boolean  @default(false)
-  order       Int      @default(0)
-  isPublished Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-model VipSignal {
-  id            String          @id @default(cuid())
-  symbol        String
-  direction     SignalDirection
-  changePercent Float
-  note          String?
-  isActive      Boolean         @default(true)
-  postedAt      DateTime        @default(now())
-  createdAt     DateTime        @default(now())
-}
-
-model Student {
-  id        String    @id @default(cuid())
-  name      String
-  email     String    @unique
-  country   String?
-  planId    String?
-  plan      String?
-  joinedAt  DateTime  @default(now())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  payments  Payment[]
-}
-
-model Payment {
-  id          String          @id @default(cuid())
-  studentId   String
-  planName    String
-  amountCents Int
-  currency    String          @default("USD")
-  provider    PaymentProvider
-  providerRef String?
-  status      PaymentStatus   @default(PENDING)
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
-  student     Student         @relation(fields: [studentId], references: [id], onDelete: Cascade)
-
-  @@index([studentId])
-}
-
-model LegalPage {
-  id        String   @id @default(cuid())
-  slug      String   @unique
-  title     String
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model SiteSetting {
-  key       String   @id
-  value     String
-  updatedAt DateTime @updatedAt
-}
+//
+// -----------------------------------------------------------------------------
+// ENUMS
+// -----------------------------------------------------------------------------
 
 enum CourseLevel {
   BEGINNER
@@ -158,4 +37,258 @@ enum PaymentStatus {
   SUCCEEDED
   FAILED
   REFUNDED
+}
+
+//
+// -----------------------------------------------------------------------------
+// ADMIN USERS
+// -----------------------------------------------------------------------------
+
+model AdminUser {
+  id           String @id @default(cuid())
+  email        String @unique
+  passwordHash String
+  name         String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//
+// -----------------------------------------------------------------------------
+// COURSES
+// -----------------------------------------------------------------------------
+
+model Course {
+  id          String @id @default(cuid())
+  slug        String @unique
+  title       String
+  description String
+
+  level CourseLevel @default(BEGINNER)
+
+  // Crypto | Forex | Stocks | Risk Management | Psychology | VIP
+  category String
+
+  // References frontend icon map
+  iconKey String?
+
+  priceCents Int @default(0)
+
+  // VIP styling
+  isHighlight Boolean @default(false)
+
+  isPublished Boolean @default(true)
+
+  order Int @default(0)
+
+  lessons Lesson[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lesson {
+  id String @id @default(cuid())
+
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  title String
+
+  videoUrl String?
+
+  // Markdown lesson body
+  content String?
+
+  order Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([courseId])
+}
+
+//
+// -----------------------------------------------------------------------------
+// BLOG
+// -----------------------------------------------------------------------------
+
+model BlogPost {
+  id String @id @default(cuid())
+
+  slug String @unique
+
+  title String
+
+  excerpt String
+
+  // Markdown body
+  content String
+
+  category String
+
+  coverImageUrl String?
+
+  readTimeMins Int @default(5)
+
+  isPublished Boolean @default(true)
+
+  publishedAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//
+// -----------------------------------------------------------------------------
+// PRICING PLANS
+// -----------------------------------------------------------------------------
+
+model PricingPlan {
+  id String @id @default(cuid())
+
+  // Starter | Pro Trader | Elite VIP
+  name String
+
+  tagline String
+
+  priceCents Int
+
+  interval String @default("month")
+
+  // Ordered feature list
+  features String[]
+
+  ctaLabel String @default("Get Started")
+
+  // Most Popular ribbon
+  isFeatured Boolean @default(false)
+
+  // Elite styling
+  isGold Boolean @default(false)
+
+  order Int @default(0)
+
+  isPublished Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//
+// -----------------------------------------------------------------------------
+// VIP SIGNALS
+// -----------------------------------------------------------------------------
+
+model VipSignal {
+  id String @id @default(cuid())
+
+  // BTC/USDT
+  symbol String
+
+  direction SignalDirection
+
+  changePercent Float
+
+  note String?
+
+  isActive Boolean @default(true)
+
+  postedAt DateTime @default(now())
+
+  createdAt DateTime @default(now())
+}
+
+//
+// -----------------------------------------------------------------------------
+// STUDENTS
+// -----------------------------------------------------------------------------
+
+model Student {
+  id String @id @default(cuid())
+
+  name String
+
+  email String @unique
+
+  country String?
+
+  // Future foreign key if plans become relational
+  planId String?
+
+  // Snapshot of selected plan
+  plan String?
+
+  joinedAt DateTime @default(now())
+
+  payments Payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//
+// -----------------------------------------------------------------------------
+// PAYMENTS
+// -----------------------------------------------------------------------------
+
+model Payment {
+  id String @id @default(cuid())
+
+  studentId String
+
+  student Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  planName String
+
+  amountCents Int
+
+  currency String @default("USD")
+
+  provider PaymentProvider
+
+  providerRef String?
+
+  status PaymentStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([studentId])
+}
+
+//
+// -----------------------------------------------------------------------------
+// LEGAL PAGES
+// -----------------------------------------------------------------------------
+
+model LegalPage {
+  id String @id @default(cuid())
+
+  slug String @unique
+
+  title String
+
+  content String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+//
+// -----------------------------------------------------------------------------
+// SITE SETTINGS
+// Generic key/value store for editable homepage content
+// Example:
+//   student_rating = "4.9/5"
+//   students_count = "160+"
+// -----------------------------------------------------------------------------
+
+model SiteSetting {
+  key String @id
+
+  value String
+
+  updatedAt DateTime @updatedAt
 }
