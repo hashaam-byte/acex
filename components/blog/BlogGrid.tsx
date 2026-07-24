@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { BLOG_CATEGORY_STYLE } from "@/lib/blog-category";
+import { FALLBACK_POSTS } from "@/lib/blog-fallback";
 
 const ICONS: Record<string, React.ElementType> = {
   coins: Coins,
@@ -50,11 +51,13 @@ export type BlogCardData = {
   coverImageUrl: string | null;
 };
 
-export function BlogGrid({ posts }: { posts: BlogCardData[] }) {
+export function BlogGrid({ posts }: { posts?: BlogCardData[] }) {
+  const visiblePosts = posts ?? FALLBACK_POSTS;
+
   return (
     <section className="mx-auto max-w-6xl px-6 py-16 lg:px-8">
       <Reveal className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {posts.map(({ slug, title, excerpt, category, date, readTimeMins, coverImageUrl }) => {
+        {visiblePosts.map(({ slug, title, excerpt, category, date, readTimeMins, coverImageUrl }) => {
           const style = BLOG_CATEGORY_STYLE[category] || { icon: "newspaper", tone: "blue" };
           const Icon = ICONS[style.icon] || Newspaper;
 
